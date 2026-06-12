@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu portifólio Python</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div id="overlay-start" class="splash-screen">
+        <div class="splash-content">
+            <h1 class="efeito-digitar">Suko: The Junior Dev</h1>
+            <h2 class="efeito-digitar2">who you want to hire!</h2>
+            <button id="btn-start" class="btn-retro">[ PRESS START ]</button>
+        </div>
+    </div>
+
+   <div id="conteudo-sistema" class="sistema-escondido">
+    <header>
+        <h1>Suko_System</h1>
+        <p>Status: Online | Protocolo: Flask_Backend</p>
+        
+        <nav class="menu-jogo-grid">
+            <a href="#secao-sobre" class="btn-menu-gigante">
+            <span class="btn-numero">01</span>
+            <span class="btn-texto">[ SOBRE MIM ]</span>
+            </a>
+            <a href="#secao-projetos" class="btn-menu-gigante">
+                <span class="btn-numero">02</span>
+                <span class="btn-texto">[ PROJETOS ]</span>
+            </a>
+            <a href="#secao-contato" class="btn-menu-gigante">
+                <span class="btn-numero">03</span>
+                <span class="btn-texto">[ CONTATO ]</span>
+            </a>
+            <a href="#secao-easteregg" class="btn-menu-gigante">
+                <span class="btn-numero">04</span>
+                <span class="btn-texto">[ ??? ]</span>
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="secao-sobre" class="secao-conteudo"
+    <h2>Sobre Mim</h2>
+    
+    <div class="container-sobre">
+        
+        <img class="foto-perfil" src="{{ url_for('static', filename='img/eu.jpg') }}" alt="Foto do João Henrique">
+        
+       <div class="texto-sobre">
+            <p><strong>> Salve! Primeiramente, obrigado por clicar aqui e fuçar o meu site.</strong></p>
+            
+            <p>Eu me chamo João Henrique — mas a galera da comunidade costuma me chamar de <strong>Suko</strong>. Sou um programador focado em backend e criei este sistema para mostrar o que sei fazer e buscar a minha primeira oportunidade real no mercado de desenvolvimento.</p>
+            
+            <p>No momento não possuo graduação, mas coloco as coisas para rodar na base da marra e da curiosidade. Aprendi os fundamentos do Python assistindo as aulas do grande professor Gustavo Guanabara no Curso em Vídeo. Assisti até a metade e o pouco que aprendi ali me abriu um universo de possibilidades. Desde então, sigo expandindo meus horizontes: já me aventurei no JavaScript, baixei a Unreal Engine para entender a lógica de jogos e venho estudando cibersegurança pelo <strong>PortSwigger</strong> (que por sinal é uma plataforma fantástica).</p>
+            
+            <p>Estou à procura de um time que precise de alguém obstinado, focado e que vai dar o máximo em cada linha de código. Se você tem uma oportunidade na sua empresa, entre em contato. Tenho certeza que posso construir coisas ainda mais grandiosas que este sistema.</p>
+            
+            <p>E caso você seja só um visitante de passagem, quem sabe em algum momento do futuro você não use um sistema que eu criei ou ajudei a construir?</p>
+            
+            <p><em>Acredito em um futuro brilhante, mesmo que o presente pareça um pouco ofuscado.</em></p>
+            
+            <p>Agradeço novamente pela atenção e por ter lido até aqui. Te vejo por aí!</p>
+            <p><strong>— João Henrique (Suko)</strong></p>
+        </div>
+
+    </div>
+</section>
+        
+        <section id="secao-projetos" class="secao-conteudo">
+            <h2>Meus projetos:</h2>
+            <ul>
+                {% for projeto in projetos %}
+                <li>
+                    <strong>{{ projeto.titulo }}:</strong>
+                    <p>{{ projeto.descricao }}</p>
+                    <a href="{{ projeto.link }}" target="_blank">Ver código ou demonstração.</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section id="secao-contato" class="secao-conteudo">
+            <h2>Contato:</h2>
+            <p>Caso queira entrar em contato comigo para projetos, vagas ou parcerias, envie um e-mail para: <br>
+               <strong>jaohenrick04@gmail.com</strong>
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Criado e pensado por João Henrique - 2026 (e talvez um pouco do Gemini, um pouco)</p>
+        <section id="secao-easteregg" class="secao-conteudo">
+            <h2>Área Restrita</h2>
+            <p>Conteúdo criptografado. Requer autorização nível Suko...</p>
+        </section>
+    </footer>
+</div>
+
+    <script>
+    // 🕹️ PARTE 1: Sistema de Boot (O que você já tinha)
+    const btnStart = document.getElementById('btn-start');
+    const overlay = document.getElementById('overlay-start');
+    const sistema = document.getElementById('conteudo-sistema');
+
+    btnStart.addEventListener('click', () => {
+        overlay.classList.add('fade-out');
+        sistema.classList.remove('sistema-escondido');
+        sistema.classList.add('fade-in');
+    });
+
+    // 🚀 PARTE 2: Ativação das Seções (A lógica nova dos botões gigantes)
+    document.querySelectorAll('.btn-menu-gigante').forEach(botao => {
+        botao.addEventListener('click', function(e) {
+            // Pega o ID da seção que está no href (ex: #secao-sobre)
+            const alvoId = this.getAttribute('href'); 
+            const secaoAlvo = document.querySelector(alvoId);
+            
+            if (secaoAlvo) {
+                // Remove a ativação de qualquer outra seção aberta para não embolar
+                document.querySelectorAll('.secao-conteudo').forEach(s => s.classList.remove('secao-ativa'));
+                
+                // Ativa a seção que você acabou de clicar
+                secaoAlvo.classList.add('secao-ativa');
+            }
+        });
+    });
+    </script>
+</body>
+</html>

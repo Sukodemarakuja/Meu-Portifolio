@@ -1,0 +1,381 @@
+/* ==========================================================================
+   📺 RETRO-CYBERPUNK MONITOR CRT (EFEITO GLOBAL)
+   ========================================================================== */
+
+/* Linhas de varredura que cobrem o site inteiro simlando TV antiga */
+body::before {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.04), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.04));
+    background-size: 100% 4px, 6px 100%;
+    z-index: 99999; 
+    pointer-events: none;
+}
+
+html {
+    scroll-behavior: smooth; /* Deslizamento suave ativado globalmente */
+}
+
+body {
+    background-color: #0A0F1D;
+    color: #E2E8F0;
+    font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* ==========================================================================
+   🎮 SPLASH SCREEN (TELA DE START)
+   ========================================================================== */
+
+.splash-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background-color: #050914;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9998; 
+    transition: all 0.8s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.splash-content {
+    text-align: center;
+    padding: 20px;
+}
+
+/* Animação de Digitação (Título) */
+.efeito-digitar {
+    color: #FFD700;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #00F0FF;
+    margin: 0 auto 10px auto; 
+    width: 0;
+    animation: digitar 2s steps(30) forwards, piscar-cursor 0.75s step-end infinite;
+}
+
+/* Animação de Digitação (Subtítulo) */
+.efeito-digitar2 {
+    color: #ad9300;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: -5px auto 40px auto; 
+    width: 0;
+    animation: digitar 2.5s steps(30) forwards;
+    animation-delay: 1.8s; 
+}
+
+/* Botão Press Start da Splash */
+.btn-retro {
+    background: transparent;
+    border: 2px solid #00F0FF;
+    color: #00F0FF;
+    padding: 15px 30px;
+    font-family: 'Fira Code', monospace;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 30px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+    animation: piscar-botao 1.5s infinite; 
+    transition: all 0.2s ease;
+}
+
+.btn-retro:hover {
+    background: #00F0FF;
+    color: #050914;
+    box-shadow: 0 0 25px #00F0FF;
+}
+
+/* Classes de Controle do JavaScript */
+.sistema-escondido {
+    display: none;
+    opacity: 0;
+}
+
+.fade-out {
+    transform: translateY(-100vh); 
+    opacity: 0;
+    pointer-events: none;
+}
+
+.fade-in {
+    display: block !important;
+    animation: aparecer-suave 1s forwards;
+}
+
+/* ==========================================================================
+   🕹️ PAINEL DE CONTROLE CENTRAL (TELA CHEIA)
+   ========================================================================== */
+
+header {
+    background: linear-gradient(135deg, #1C2541 0%, #0B132B 100%);
+    padding: 40px 20px;
+    text-align: center;
+    border-bottom: 4px solid #FFD700;
+    box-shadow: 0 4px 30px rgba(255, 215, 0, 0.15);
+    
+    /* 📺 Faz o painel principal ocupar a tela inteira após o Start */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza verticalmente o título e os botões */
+    align-items: center;
+    box-sizing: border-box;
+}
+
+header h1 {
+    margin: 0;
+    color: #FFD700;
+    font-size: 3.5rem; /* Um pouco maior para dar imponência */
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+}
+
+header p {
+    color: #8E9AAF;
+    font-size: 1.3rem;
+    margin-top: 10px;
+    font-family: 'Fira Code', monospace;
+}
+
+/* Deixa a grade de botões ainda mais parruda no centro */
+.menu-jogo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 25px;                             
+    width: 100%;
+    max-width: 700px; /* Aumentamos la largura máxima da grade */
+    margin-top: 50px;              
+}
+
+.btn-menu-gigante {
+    display: flex;
+    flex-direction: column;                
+    align-items: center;
+    justify-content: center;
+    padding: 35px 20px; /* Aumentamos o estofamento interno para os botões ficarem massivos */
+    background: rgba(28, 37, 65, 0.5);
+    border: 2px solid #00F0FF;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+.btn-numero {
+    font-size: 0.8rem;
+    color: #5C677D;
+    margin-bottom: 5px;
+    font-family: 'Fira Code', monospace;
+    transition: color 0.3s ease;
+}
+
+.btn-texto {
+    font-size: 1.4rem; /* Texto maior nos botões */
+    font-family: 'Orbitron', sans-serif;
+    color: #00F0FF;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* 🌟 EFEITO HOVER UNIFICADO (Borda, números e textos brilham em dourado juntos) */
+.btn-menu-gigante:hover {
+    background: rgba(255, 215, 0, 0.08); 
+    border-color: #FFD700;               
+    transform: scale(1.05);             
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.5); 
+}
+
+.btn-menu-gigante:hover .btn-numero {
+    color: #FFD700;
+}
+
+.btn-menu-gigante:hover .btn-texto {
+    color: #FFD700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+}
+
+/* Oculta as seções de conteúdo por padrão para o usuário focar no menu */
+.secao-conteudo {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Classe que o JavaScript vai injetar para fazer a seção brotar na tela */
+.secao-ativa {
+    display: block !important;
+    animation: carregarSecao 0.6s forwards;
+}
+
+@keyframes carregarSecao {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   📸 SEÇÃO SOBRE MIM (FOTO NA DIREITA)
+   ========================================================================== */
+
+.container-sobre {
+    display: flex !important;        /* Força o modo Flexbox */
+    flex-direction: row-reverse;     /* Imagem na direita, texto na esquerda */
+    align-items: center;
+    justify-content: space-between;  /* Empurra os dois para as extremidades */
+    gap: 40px; 
+    background: rgba(28, 37, 65, 0.4);
+    backdrop-filter: blur(10px);
+    padding: 35px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    margin-top: 20px;
+}
+
+.foto-perfil {
+    width: 300px !important;   /* Sua largura padrão */
+    height: 400px !important;  /* Sua altura padrão */
+    max-width: 100%;           
+    min-width: 250px;          
+    border-radius: 4px; 
+    border: 2px solid #00F0FF;
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+    
+    /* 🛠️ A MÁGICA ESTÁ AQUI: */
+    object-fit: cover;         /* Preenche toda a caixa, colando a borda na foto */
+    object-position: center top; /* Garante que se centralizar, foque do peito para cima, sem cortar a cabeça */
+    
+    transition: all 0.3s ease;
+}
+
+.foto-perfil:hover {
+    border-color: #FFD700;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+    transform: scale(1.00);
+}
+
+.texto-sobre {
+    flex: 1;
+}
+
+/* ==========================================================================
+   🌌 ESTRUTURA DE LAYOUT E CONTEÚDO (PROJETOS / LINKS)
+   ========================================================================== */
+
+main {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+h2 {
+    color: #FFD700;
+    font-size: 1.8rem;
+    border-bottom: 2px solid #1C2541;
+    padding-bottom: 10px;
+    margin-top: 40px;
+}
+
+section {
+    min-height: 75vh; /* Ocupa 75% da altura da tela impedindo o vazio existencial */
+    padding-top: 80px; 
+    box-sizing: border-box;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background: rgba(28, 37, 65, 0.6);
+    backdrop-filter: blur(10px);
+    margin-bottom: 20px;
+    padding: 25px;
+    border-radius: 12px;
+    border-left: 6px solid #FFD700;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+li:hover {
+    transform: translateY(-5px) scale(1.02);
+    background: rgba(28, 37, 65, 0.9);
+    border-color: rgba(255, 215, 0, 0.5);
+    box-shadow: 0 10px 20px rgba(255, 215, 0, 0.1);
+}
+
+a {
+    color: #FFD700;
+    text-decoration: none;
+    font-weight: bold;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #64DFDF;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+a:hover {
+    color: #64DFDF;
+}
+
+a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+footer {
+    text-align: center;
+    padding: 40px;
+    color: #5C677D;
+    font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   🎞️ TIMELINES DAS ANIMAÇÕES
+   ========================================================================== */
+
+@keyframes digitar {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes piscar-cursor {
+    from, to { border-color: transparent }
+    50% { border-color: #00F0FF }
+}
+
+@keyframes piscar-botao {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+@keyframes aparecer-suave {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
