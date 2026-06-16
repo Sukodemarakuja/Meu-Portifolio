@@ -15,7 +15,8 @@
   {
     "titulo": "Feed Acadêmico",
     "descricao": "Ferramenta de automação e Web Scraping integrada à API do arXiv para busca, filtragem e tradução automatizada de artigos científicos do inglês para o português.",
-    "tecnologias": ["Python", "Web Scraping", "arXiv API", "Requests"]
+    "tecnologias": ["Python", "Web Scraping", "arXiv API", "Requests"],
+    "link": "https://github.com/Sukodemarakuja/feed_academico"
   },
 
   {
