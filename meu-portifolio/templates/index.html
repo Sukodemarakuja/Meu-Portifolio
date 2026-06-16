@@ -41,7 +41,7 @@
     </header>
 
     <main>
-        <section id="secao-sobre" class="secao-conteudo"
+        <section id="secao-sobre" class="secao-conteudo">
     <h2>Sobre Mim</h2>
     
     <div class="container-sobre">
@@ -67,20 +67,38 @@
 
     </div>
 </section>
-        
-        <section id="secao-projetos" class="secao-conteudo">
-            <h2>Meus projetos:</h2>
-            <ul>
-                {% for projeto in projetos %}
-                <li>
-                    <strong>{{ projeto.titulo }}:</strong>
-                    <p>{{ projeto.descricao }}</p>
-                    <a href="{{ projeto.link }}" target="_blank">Ver código ou demonstração.</a>
-                </li>
-                {% endfor %}
-            </ul>
-        </section>
 
+    <section id="secao-projetos" class="secao-projetos secao-conteudo">
+        <h2 class="titulo-secao">Projetos & Automações</h2>
+        
+        <div class="container-projetos">
+
+            {%for projeto in projetos_brutos%}
+            <div class="card-projeto">
+                <h3>{{projeto.titulo}}</h3>
+
+                <p>{{projeto.descricao}}</p>
+
+
+
+                <div class="tags-tecnologias">
+                  {%for tech in projeto.tecnologias%}
+                  <span>{{tech}}</span>
+                  {%endfor%}
+                </div>
+
+                {% if projeto.link == 'interno' %}
+                <a href="#" class="botao-projeto botao-desativado">Você esta aqui</a>
+                {% else %}
+                <a href="{{ projeto.link }}" target="_blank" class="botao-projeto">Ver código no GitHub</a>
+                {% endif %}
+
+
+            </div>
+            {%endfor%}
+        </div>
+    </section>
+        
         <section id="secao-contato" class="secao-conteudo">
             <h2>Contato:</h2>
             <p>Caso queira entrar em contato comigo para projetos, vagas ou parcerias, envie um e-mail para: <br>
@@ -90,7 +108,7 @@
     </main>
 
     <footer>
-        <p>Criado e pensado por João Henrique - 2026 (e talvez um pouco do Gemini, um pouco)</p>
+        <p>Criado e pensado por João Henrique - 2026</p>
         <section id="secao-easteregg" class="secao-conteudo">
             <h2>Área Restrita</h2>
             <p>Conteúdo criptografado. Requer autorização nível Suko...</p>

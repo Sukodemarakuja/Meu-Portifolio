@@ -1,0 +1,27 @@
+[
+  {
+    "titulo": "Manga Translator",
+    "descricao": "Script em Python automatizado para Visão Computacional. Integração de tecnologia OCR para extração de textos, tradução em lote e manipulação digital de imagens e arquivos PDF.",
+    "tecnologias": ["Python", "OCR", "Pillow"],
+    "link": "https://github.com/sukodemarakuja/manga-translator"
+  },
+  {
+    "titulo": "Projeto P",
+    "descricao": "Sistema de inteligência artificial pessoal com engenharia de prompts e integração de LLMs via APIs da OpenAI e Google Gemini. Possui sistema de memória persistente baseado em manipulação de arquivos JSON.",
+    "tecnologias": ["Python", "OpenAI API", "JSON"],
+    "link": "https://github.com/Sukodemarakuja/Projeto_P"
+  },
+
+  {
+    "titulo": "Feed Acadêmico",
+    "descricao": "Ferramenta de automação e Web Scraping integrada à API do arXiv para busca, filtragem e tradução automatizada de artigos científicos do inglês para o português.",
+    "tecnologias": ["Python", "Web Scraping", "arXiv API", "Requests"]
+  },
+
+  {
+    "titulo": "Suko System - Portfólio Web",
+    "descricao": "Esta aplicação web completa desenvolvida com Flask para expor meus projetos e automações.",
+    "tecnologias": ["Python", "Flask", "HTML5", "CSS3"],
+    "link": "interno"
+  }
+]

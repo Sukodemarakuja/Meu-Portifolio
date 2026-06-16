@@ -379,3 +379,103 @@ footer {
     from { opacity: 0; transform: scale(0.98); }
     to { opacity: 1; transform: scale(1); }
 }
+/* ==========================================================================
+   SEÇÃO DE PROJETOS & AUTOMAÇÕES
+   ========================================================================== */
+
+/* Alinhamento geral da seção */
+.secao-projetos {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.titulo-secao {
+    color: #ffcc00; /* O seu dourado padrão */
+    font-size: 2rem;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* O Container que organiza os cards lado a lado */
+.container-projetos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Estilização de cada Card individual */
+.card-projeto {
+    background-color: #1a1a1a; /* Fundo grafite escuro */
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 30px;
+    width: 45%; /* Ocupa quase metade da tela cada um */
+    min-width: 300px; /* Não deixa esmagar em telas menores */
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+
+}
+
+/* Efeito monstro ao passar o mouse por cima do card */
+.card-projeto:hover {
+    transform: translateY(-5px); /* Dá uma leve flutuada */
+    border-color: #ffcc00; /* A borda brilha em dourado */
+}
+
+.card-projeto h3 {
+    color: #ffffff;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.card-projeto p {
+    color: #cccccc;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* 🏷️ AS ETIQUETAS (SPANS) QUE VOCÊ PERGUNTOU! */
+.tags-tecnologias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.tags-tecnologias span {
+    background-color: #2a2a2a; /* Fundo cinza para destacar */
+    color: #ffcc00; /* Texto dourado */
+    font-size: 0.85rem;
+    font-weight: bold;
+    padding: 5px 12px;
+    border-radius: 20px; /* Bordas bem arredondadas estilo selo */
+    border: 1px solid #444;
+}
+
+/* Botão de link para o GitHub dentro do card */
+.botao-projeto {
+    display: inline-block;
+    text-decoration: none;
+    background-color: transparent;
+    color: #ffcc00;
+    border: 2px solid #ffcc00;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.botao-projeto:hover {
+    background-color: #ffcc00;
+    color: #000000; /* Inverte as cores no hover */
+}
