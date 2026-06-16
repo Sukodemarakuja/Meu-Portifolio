@@ -39,12 +39,3 @@ Atualmente, o banco de dados do sistema renderiza dinamicamente ferramentas como
 3. **Suko System (Este Portfólio):** Aplicação Flask integrada que você está navegando agora.
 
 ---
-
-## 🚀 Como Rodar o Sistema Localmente
-
-Se quiser clonar e inspecionar o código na sua máquina:
-
-1. Certifique-se de ter o Python instalado.
-2. Clone o repositório:
-   ```bash
-   git clone [https://github.com/Sukodemarakuja/Meu-Portifolio.git](https://github.com/Sukodemarakuja/Meu-Portifolio.git)
